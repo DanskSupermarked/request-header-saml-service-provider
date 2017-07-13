@@ -138,7 +138,7 @@
                                     }
 
                                 ],
-                                "image": "openshift3/saml-service-provider",
+                                "image": "centos-saml-auth",
                                 "name": "saml-auth",
                                 "ports": [
                                     {
@@ -165,8 +165,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "saml-service-provider:latest",
-                                "namespace": "openshift3"
+                                "name": "centos-saml-auth:latest",
                             }
                         },
                         "type": "ImageChange"
