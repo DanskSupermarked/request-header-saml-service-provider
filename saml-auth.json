@@ -38,7 +38,7 @@
                 },
                 "strategy": {
                     "type": "Docker",
-                    "sourceStrategy": {
+                    "dockerStrategy": {
                         "from": {
                             "kind": "DockerImage",
                             "name": "centos:7"
