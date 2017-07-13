@@ -13,6 +13,48 @@
     "objects": [
         {
             "apiVersion": "v1",
+            "kind": "ImageStream",
+            "metadata": {
+                "name": "centos-saml-auth"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "BuildConfig",
+            "metadata": {
+                "name": "saml-auth"
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/DanskSupermarked/request-header-saml-service-provider"
+                    }
+                },
+                "strategy": {
+                    "type": "Docker",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "centos:7"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "centos-saml-auth:latest"
+                    }
+                }
+            }
+        },
+        {
+            "apiVersion": "v1",
             "kind": "Service",
             "metadata": {
                 "annotations": {
@@ -60,7 +102,7 @@
                 "name": "saml-auth"
             },
             "spec": {
-                "replicas": 0,
+                "replicas": 1,
                 "selector": {
                     "name": "saml-auth"
                 },
